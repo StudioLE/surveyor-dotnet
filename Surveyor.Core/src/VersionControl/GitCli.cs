@@ -305,11 +305,11 @@ public class GitCli
 
     /// <remarks>
     /// The primary purpose is to ensure the <c>"</c> or new line characters are not included which will break the command.
-    /// This is a very simply check that ignores many valid references such as tags with /.
+    /// This is a simple allowlist check rather than an exhaustive validation of git ref format rules.
     /// </remarks>
-    private static bool ValidateGitReferenceArgument(string reference)
+    internal static bool ValidateGitReferenceArgument(string reference)
     {
-        Regex regex = new(@"^[a-z0-9][a-z0-9._\-\/]*$", RegexOptions.IgnoreCase);
+        Regex regex = new(@"^[a-z0-9][a-z0-9._\-\/@#%+]*$", RegexOptions.IgnoreCase);
         return regex.IsMatch(reference);
     }
 
@@ -320,7 +320,7 @@ public class GitCli
     /// The primary purpose is to ensure the <c>"</c> or new line characters are not included which will break the command.
     /// This is a very simply check that likely ignores many valid paths and allows many invalid paths.
     /// </remarks>
-    private static bool ValidatePathArgument(string path)
+    internal static bool ValidatePathArgument(string path)
     {
         Regex regex = new(@"^[a-z0-9._\- \/\\#:]+$", RegexOptions.IgnoreCase);
         return regex.IsMatch(path);
