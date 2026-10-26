@@ -2,11 +2,13 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <!--The folder where the custom task will be present. It points to inside the nuget package. -->
-    <_Surveyor_TaskFolder>$(MSBuildThisFileDirectory)../tasks/netstandard2.0</_Surveyor_TaskFolder>
+    <_Surveyor_TaskFolder>$(MSBuildThisFileDirectory)../tasks/net10.0</_Surveyor_TaskFolder>
     <!--Reference to the assembly which contains the MSBuild Task-->
     <SurveyorAssemblyPath>$(_Surveyor_TaskFolder)/$(MSBuildThisFileName).dll</SurveyorAssemblyPath>
     <GetPackageVersionDependsOn>$(GetPackageVersionDependsOn);SurveyorBuildVersioning</GetPackageVersionDependsOn>
   </PropertyGroup>
 
-  <UsingTask TaskName="VersioningTask" AssemblyFile="$(SurveyorAssemblyPath)" Condition="Exists('$(SurveyorAssemblyPath)')"/>
+  <!-- Visual Studio runs .NET Framework MSBuild, which needs an out-of-process task host for a .NET task -->
+  <UsingTask TaskName="VersioningTask" AssemblyFile="$(SurveyorAssemblyPath)" Runtime="NET" TaskFactory="TaskHostFactory" Condition="'$(MSBuildRuntimeType)' == 'Full' AND Exists('$(SurveyorAssemblyPath)')"/>
+  <UsingTask TaskName="VersioningTask" AssemblyFile="$(SurveyorAssemblyPath)" Runtime="NET" Condition="'$(MSBuildRuntimeType)' == 'Core' AND Exists('$(SurveyorAssemblyPath)')"/>
 </Project>

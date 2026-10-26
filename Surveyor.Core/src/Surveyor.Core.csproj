@@ -18,7 +18,6 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.13" />
     <PackageReference Include="StudioLE.Extensions.System" Version="0.11.0" />
     <PackageReference Include="StudioLE.Patterns.Abstractions" Version="0.11.0" />
-    <PackageReference Include="System.Text.Json" Version="10.0.13" />
   </ItemGroup>
 
 </Project>

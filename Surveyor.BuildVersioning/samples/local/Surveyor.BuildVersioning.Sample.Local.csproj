@@ -11,16 +11,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../../src/Surveyor.BuildVersioning.csproj" />
+    <ProjectReference Include="../../src/Surveyor.BuildVersioning.csproj" ReferenceOutputAssembly="false" SetTargetFramework="TargetFramework=net10.0" />
   </ItemGroup>
 
   <PropertyGroup>
     <SurveyorBranch>main</SurveyorBranch>
-    <SurveyorAssemblyPath>../../src/bin/$(Configuration)/netstandard2.0/Surveyor.BuildVersioning.dll</SurveyorAssemblyPath>
+    <SurveyorAssemblyPath>../../src/bin/$(Configuration)/net10.0/Surveyor.BuildVersioning.dll</SurveyorAssemblyPath>
     <GetPackageVersionDependsOn>$(GetPackageVersionDependsOn);SurveyorBuildVersioning</GetPackageVersionDependsOn>
   </PropertyGroup>
 
-  <UsingTask TaskName="VersioningTask" AssemblyFile="$(SurveyorAssemblyPath)" Condition="Exists('$(SurveyorAssemblyPath)')"/>
+  <UsingTask TaskName="VersioningTask" AssemblyFile="$(SurveyorAssemblyPath)" Runtime="NET" TaskFactory="TaskHostFactory" Condition="'$(MSBuildRuntimeType)' == 'Full' AND Exists('$(SurveyorAssemblyPath)')"/>
+  <UsingTask TaskName="VersioningTask" AssemblyFile="$(SurveyorAssemblyPath)" Runtime="NET" Condition="'$(MSBuildRuntimeType)' == 'Core' AND Exists('$(SurveyorAssemblyPath)')"/>
   <Import Project="../../src/build/Surveyor.BuildVersioning.targets" Condition="'$(CI)' != 'true'"/>
 
 </Project>

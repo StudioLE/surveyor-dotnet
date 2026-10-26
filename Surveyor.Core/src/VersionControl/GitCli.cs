@@ -152,8 +152,9 @@ public class GitCli
         IReadOnlyCollection<string> changedFiles = GetFilesChangedSince(sinceRef);
         return changedFiles
             .Select(Path.GetDirectoryName)
+            .OfType<string>()
             .Distinct()
-            .Where(x => !string.IsNullOrEmpty(x))
+            .Where(x => x != string.Empty)
             .ToArray();
     }
 
