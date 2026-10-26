@@ -30,10 +30,11 @@ internal sealed class ProjectVersioningActivityTests
     {
         // Arrange
         ProjectVersioningActivity activity = _services.GetRequiredService<ProjectVersioningActivity>();
-        IOptions<VersioningActivityOptions> options = _services.GetRequiredService<IOptions<VersioningActivityOptions>>();
+        VersioningActivityOptions options = _services.GetRequiredService<IOptions<VersioningActivityOptions>>().Value;
+        options.Branch = "main";
 
         // Act
-        SemanticVersion? version = await activity.Execute(options.Value);
+        SemanticVersion? version = await activity.Execute(options);
 
         // Assert
         Assert.That(version, Is.Not.Null);

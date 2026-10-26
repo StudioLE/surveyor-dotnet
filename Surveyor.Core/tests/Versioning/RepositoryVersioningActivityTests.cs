@@ -30,10 +30,12 @@ internal sealed class RepositoryVersioningActivityTests
     {
         // Arrange
         RepositoryVersioningActivity activity = _services.GetRequiredService<RepositoryVersioningActivity>();
-        IOptions<VersioningActivityOptions> options = _services.GetRequiredService<IOptions<VersioningActivityOptions>>();
+        VersioningActivityOptions options = _services.GetRequiredService<IOptions<VersioningActivityOptions>>().Value;
+        options.Branch = "main";
+        options.Package = string.Empty;
 
         // Act
-        SemanticVersion? version = activity.Execute(options.Value);
+        SemanticVersion? version = activity.Execute(options);
 
         // Assert
         Assert.That(version, Is.Not.Null);

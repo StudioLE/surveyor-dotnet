@@ -28,7 +28,7 @@ internal sealed class ReleaseNotesActivityTests
         ReleaseNotesActivity activity = _services.GetRequiredService<ReleaseNotesActivity>();
         ReleaseNotesActivityOptions options = new()
         {
-            Branch = "alpha"
+            Branch = "main"
         };
 
         // Act

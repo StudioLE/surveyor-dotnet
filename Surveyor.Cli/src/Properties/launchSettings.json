@@ -9,14 +9,14 @@
     },
     "RepositoryVersioningActivity": {
       "commandName": "Project",
-      "commandLineArgs": "version --Versioning:Branch alpha --Versioning:Package \"\" --Versioning:Directory \"/var/mnt/e/Repos/C#/Example\"",
+      "commandLineArgs": "version --Versioning:Branch main --Versioning:Package \"\" --Versioning:Directory \"/var/mnt/e/Repos/C#/Example\"",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Production"
       }
     },
     "ReleaseNotesActivity": {
       "commandName": "Project",
-      "commandLineArgs": "release-notes --Releases:Branch alpha",
+      "commandLineArgs": "release-notes --Releases:Branch main",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Production"
       }

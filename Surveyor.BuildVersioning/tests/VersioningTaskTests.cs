@@ -7,7 +7,7 @@ namespace Surveyor.BuildVersioning.Tests;
 internal sealed class VersioningTaskTests
 {
     [Test]
-    [Explicit("Requires alpha branch")]
+    [Explicit("Requires main branch")]
     public void VersioningTask_Execute()
     {
         // Arrange
@@ -20,7 +20,7 @@ internal sealed class VersioningTaskTests
             BuildEngine = engine,
             Package = "Surveyor.Core",
             Directory = directory,
-            Branch = "alpha"
+            Branch = "main"
         };
 
         // Act
