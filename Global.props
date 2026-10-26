@@ -45,10 +45,6 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup Condition="$(IsLibrary)">
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.402" PrivateAssets="All"/>
-  </ItemGroup>
-
   <ItemGroup Condition="$(IsLibrary) OR $(IsExecutable)">
     <Content Condition="Exists('$(ProjectReadmeFilePath)')" Include="$(PackageReadmeFile)" Pack="true" PackagePath="/" />
     <None Condition="Exists('$(RepositoryReadmeFilePath)') AND ! Exists('$(ProjectReadmeFilePath)')" Include="$(RepositoryReadmeFilePath)" Pack="true" PackagePath="/" Visible="false" />
