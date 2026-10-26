@@ -2,7 +2,7 @@
 
 ### [Surveyor.BuildVersioning](Surveyor.BuildVersioning/src)
 
-An MSBuild task to automatically apply assembly and package version numbers by analyzing conventional commit messages and whether files have changed since the last published version.
+An MSBuild task to automatically apply assembly and package version numbers by analyzing conventional commit messages and whether files have changed since the last released version.
 
 ### [Surveyor.Cli](Surveyor.Cli/src)
 
@@ -10,7 +10,7 @@ A CLI tool to handle essential CI/CD tasks such as: version numbering for a repo
 
 ### [Surveyor.Core](Surveyor.Core/src)
 
-Core libraries for handling CI/CD tasks for .NET projects such as: semantic version numbering; conventional commit messages; reading NuGet feeds; executing git CLI commands; generating release notes.
+Core libraries for handling CI/CD tasks for .NET projects such as: semantic version numbering; conventional commit messages; executing git CLI commands; generating release notes.
 
 ## License
 

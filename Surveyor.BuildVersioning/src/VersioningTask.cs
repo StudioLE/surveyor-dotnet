@@ -37,11 +37,17 @@ public class VersioningTask : Task
     /// <summary>
     /// The URL of the NuGet feed.
     /// </summary>
+    /// <remarks>
+    /// Ignored. Kept so builds still passing <c>SurveyorFeed</c> don't fail.
+    /// </remarks>
     public string Feed { get; set; } = string.Empty;
 
     /// <summary>
     /// An optional authentication token for the NuGet feed.
     /// </summary>
+    /// <remarks>
+    /// Ignored. Kept so builds still passing <c>SurveyorToken</c> don't fail.
+    /// </remarks>
     public string Token { get; set; } = string.Empty;
 
     /// <summary>
@@ -77,10 +83,6 @@ public class VersioningTask : Task
                 Log.LogError($"{nameof(VersioningTask)} requires {nameof(Directory)} to be set.");
                 return false;
             }
-            if (!string.IsNullOrEmpty(Feed))
-                Environment.SetEnvironmentVariable("PACKAGES__FEED", Feed);
-            if (!string.IsNullOrEmpty(Token))
-                Environment.SetEnvironmentVariable("PACKAGES__TOKEN", Token);
             IHost host = Host.CreateDefaultBuilder()
                 .ConfigureLogging((_, logging) => logging
                     .ClearProviders()

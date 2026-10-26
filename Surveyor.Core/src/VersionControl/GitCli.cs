@@ -101,6 +101,38 @@ public class GitCli
     }
 
     /// <summary>
+    /// Get the tags on <paramref name="branch"/> that contain <paramref name="commitRef"/>.
+    /// </summary>
+    /// <returns>
+    /// A collection of tags.
+    /// </returns>
+    public IReadOnlyCollection<string> GetTagsContaining(string commitRef, string branch)
+    {
+        if (!ValidateGitReferenceArgument(commitRef))
+            throw new("Invalid git reference.");
+        if (!ValidateGitReferenceArgument(branch))
+            throw new("Invalid branch name.");
+        return CliExecuteOrThrow($"tag --list --merged \"{branch}\" --contains \"{commitRef}\"");
+    }
+
+    /// <summary>
+    /// Get the hash of the latest commit on <paramref name="branch"/> that changed <paramref name="relativePath"/>.
+    /// </summary>
+    /// <param name="relativePath">The path relative to the root of the repository.</param>
+    /// <param name="branch">The name of the branch.</param>
+    /// <returns>
+    /// The commit hash, or <see langword="null"/> if no commit changed the path.
+    /// </returns>
+    public string? GetLastCommit(string relativePath, string branch)
+    {
+        if (!ValidatePathArgument(relativePath))
+            throw new("Invalid path argument.");
+        if (!ValidateGitReferenceArgument(branch))
+            throw new("Invalid branch name.");
+        return CliExecuteOrThrow($"log -1 --format=%H \"{branch}\" -- \"{relativePath}\"").FirstOrDefault();
+    }
+
+    /// <summary>
     /// Get the name of the current branch.
     /// </summary>
     /// <returns>

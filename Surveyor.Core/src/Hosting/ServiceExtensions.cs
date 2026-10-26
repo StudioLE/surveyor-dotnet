@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Surveyor.Packages;
 using Surveyor.Projects;
 using Surveyor.ReleaseNotes;
 using Surveyor.VersionControl;
@@ -21,12 +20,10 @@ public static class ServiceExtensions
             .AddTransient<ProjectVersioningActivity>()
             .AddTransient<RepositoryVersioningActivity>()
             .AddTransient<IBranchVersionProvider, BranchVersionProvider>()
-            .AddTransient<IChangedFileProvider, ChangedFileProvider>()
-            .AddTransient<IPublishedVersionProvider, PublishedVersionProvider>()
+            .AddTransient<IReleasedVersionProvider, ReleasedVersionProvider>()
             .AddTransient<IRepositoryVersionProvider, RepositoryVersionProvider>()
             .AddTransient<IHeadVersionProvider, HeadVersionProvider>()
             .AddTransient<IReleaseTypeStrategy, ReleaseTypeStrategy>()
-            .AddTransient<PackageApi>()
             .AddSingleton<GitCli>()
             .AddTransient<IReleaseStreamProvider, ReleaseStreamProvider>()
             .AddTransient<ReleaseNotesActivity>()
@@ -40,9 +37,6 @@ public static class ServiceExtensions
     /// </summary>
     public static IServiceCollection AddSurveyorOptions(this IServiceCollection services)
     {
-        services
-            .AddOptions<PackageApiOptions>()
-            .BindConfiguration(PackageApiOptions.Section);
         services
             .AddOptions<GitCliOptions>()
             .BindConfiguration(GitCliOptions.Section);

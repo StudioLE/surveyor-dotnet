@@ -1,6 +1,6 @@
 ## About
 
-An MSBuild task to automatically apply assembly and package version numbers by analyzing conventional commit messages and determining whether files have changed since the last version published to a NuGet feed.
+An MSBuild task to automatically apply assembly and package version numbers by analyzing conventional commit messages and determining whether files have changed since the last version released as a git tag.
 
 Each project, assembly, or package in a solution is versioned independently so new versions are only released if the assembly has changed, as opposed to publishing every package in the repository.
 

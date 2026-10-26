@@ -4,7 +4,7 @@ A CLI tool to handle essential CI/CD tasks such as:
 
 ### Version Numbering
 
-Determine assembly and package version numbers by analyzing conventional commit messages and determining whether files have changed since the last version published to a NuGet feed.
+Determine assembly and package version numbers by analyzing conventional commit messages and determining whether files have changed since the last version released as a git tag.
 
 - Each project, assembly, or package in a solution is versioned independently so new versions are only released if the assembly has changed, as opposed to publishing every package in the repository.
 - Analyses commit messages formatted according to the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification to determine whether a version bump should be a patch, minor, or major release.
