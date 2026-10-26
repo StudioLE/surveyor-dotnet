@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Authors>StudioLE</Authors>
-    <Copyright>Copyright © Laurence Elsdon 2024</Copyright>
+    <Copyright>Copyright © Laurence Elsdon 2024-2026</Copyright>
     <PackageProjectUrl>https://github.com/StudioLE/Surveyor</PackageProjectUrl>
     <PackageTags>git build versioning automatic semver semantic version release notes conventional commit</PackageTags>
     <PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
